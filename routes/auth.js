@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user.js");
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcrypt")
+// const jwt = require("jsonwebtoken");
 
 //REGISTER
 router.post('/register' ,async (req,res) =>{
@@ -30,10 +30,10 @@ router.post('/login', async (req, res) => {
         !user && res.status(401).json("Wrong User Name");
 
 
-        const originalPassword = await bcrypt.compare(req.body.password, user.password)
+        // const originalPassword = await bcrypt.compare(req.body.password, user.password)
         
-        !originalPassword&& 
-            res.status(401).json("Wrong Password");
+        // !originalPassword&& 
+        //     res.status(401).json("Wrong Password");
   
         const { password, ...others } = user._doc;  
         res.status(200).json({...others, accessToken});

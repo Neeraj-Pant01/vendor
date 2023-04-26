@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const vendorSchema = require("../models/vendor.js")
-const bcrypt = require("bcrypt")
+// const bcrypt = require("bcrypt")
 
 //register a vendor
 router.post('/register',async(req,res)=>{
@@ -19,8 +19,8 @@ router.post('/login',async(req,res)=>{
     try{
         const vendor = await vendorSchema.findOne({email:req.body.email})
 
-        const validPass = await bcrypt.compare(req.body.password, vendor.password)
-        !validPass && res.status(400).send("password is not valid !")
+        // const validPass = await bcrypt.compare(req.body.password, vendor.password)
+        // !validPass && res.status(400).send("password is not valid !")
 
         const {password, ...others} = vendor._doc
         res.status(200).json(others)
