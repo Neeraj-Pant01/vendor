@@ -4,11 +4,12 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const authRoute = require("./routes/auth.js")
 const vendorroute = require("./routes/vendors.js")
+const bodyParser = require("body-parser")
 
 const app = express()
 
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 

@@ -5,9 +5,7 @@ const vendorSchema = require("../models/vendor.js")
 //register a vendor
 router.post('/register',async(req,res)=>{
     try{
-        const salt = await bcrypt.genSalt(10)
-        const hashpass = await bcrypt.hash(req.body.password, salt)
-        const newVendor = new vendorSchema({...req.body, password:hashpass})
+        const newVendor = new vendorSchema(req.body)
         await newVendor.save()
         res.status(200).json(newVendor)
     }catch(err){
@@ -28,6 +26,18 @@ router.post('/login',async(req,res)=>{
         res.status(200).json(err)
     }
 })
+
+//get a single vendor
+router.get('/:id',async(req,res)=>{
+    try{
+        const vendor = await vendorSchema.findById(req.params.id);
+        res.status(200).json(vendor)
+    }catch(err){
+        res.status(400).json(err)
+    }
+})
+
+
 
 //get all the vendors
 router.get('/',async (req,res)=>{
