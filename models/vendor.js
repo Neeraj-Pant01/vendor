@@ -24,6 +24,10 @@ const vendorSchema = new mongoose.Schema(
             qualifications:{
                 type:String,
                 required:true
+            },
+            image:{
+              type:String,
+              required:false
             }
     },
     { timestamps: true }
